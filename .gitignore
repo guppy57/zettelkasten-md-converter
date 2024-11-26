@@ -1,4 +1,5 @@
 outputs/
 inputs/
+input_archives/
 node_modules/
 .bin/

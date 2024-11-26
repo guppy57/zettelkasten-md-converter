@@ -126,6 +126,7 @@ Keep the following rules and tips in mind while processing the markdown file:
 6. Do not include an additional new line and divider ("---") at the end of the processed markdown file.
 7. Do not include any illegal characters into the title of the processed markdown file as it will also serve as the name of the markdown file. You CANNOT include: "|", "+", "/", or "#".
 8. If a source is not explicityly stated, infer based on the nature of the source file's content. If you are given just a quote, the source would be the author of the quote.
+9. If there are any quotes in the source file, keep the original quote as it was and add additional description and explanations to the body.
 
 Markdown file to process:
 

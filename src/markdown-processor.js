@@ -76,7 +76,7 @@ export class MarkdownProcessor {
 
   async saveAnalysis(analysis) {
     const { title, content } = await this.parseAndRemoveH1Heading(analysis);
-    const outputPath = path.join(this.outputDir, title);
+    const outputPath = path.join(this.outputDir, title + ".md");
 
     try {
       await writeFile(outputPath, content, 'utf-8');
