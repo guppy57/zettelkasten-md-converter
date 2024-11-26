@@ -1,4 +1,5 @@
 import { MarkdownProcessor } from './src/markdown-processor.js';
+import { ANALYSIS_PROMPT } from './src/prompts.js';
 
 const REQUIRED_ENV_VARS = ['OPENAI_API_KEY'];
 
@@ -17,15 +18,15 @@ function validateEnvironment() {
 async function main() {
   validateEnvironment();
   
-  console.log('Markdown File Processor with GPT-4');
+  console.log('Markdown File Processor for Zettelkasten');
   console.log('----------------------------------\n');
   
-  const processor = new MarkdownProcessor(process.env.OPENAI_API_KEY, OUTPUT_DIR);
+  const processor = new MarkdownProcessor(process.env.OPENAI_API_KEY, OUTPUT_DIR, ANALYSIS_PROMPT);
   
   console.log('\nProcessing markdown files...\n');
   await processor.processDirectory(INPUT_DIR);
   
-  console.log('\nProcessing complete! Check the output directory for analysis files.');
+  console.log('\Processing complete! Check the output directory for analysis files.');
 }
 
 main().catch(console.error);

@@ -12,11 +12,10 @@ export class OpenAIClient {
     });
   }
 
-  async getCompletion(prompt, customConfig = {}) {
+  async getCompletion(prompt) {
     try {
       const config = {
         ...DEFAULT_CONFIG,
-        ...customConfig,
         messages: [{ role: "user", content: prompt }]
       };
 

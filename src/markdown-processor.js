@@ -2,12 +2,12 @@ import { readFile, writeFile, mkdir } from 'fs/promises';
 import { glob } from 'glob';
 import path from 'path';
 import { OpenAIClient } from './openai-client.js';
-import { ANALYSIS_PROMPT } from './prompts.js';
 
 export class MarkdownProcessor {
-  constructor(apiKey, outputDir = 'analysis-output') {
+  constructor(apiKey, outputDir, prompt) {
     this.openAIClient = new OpenAIClient(apiKey);
     this.outputDir = outputDir;
+    this.prompt = prompt;
   }
 
   async processDirectory(directoryPath) {
@@ -56,15 +56,11 @@ export class MarkdownProcessor {
   }
 
   async analyzeWithAI(content, filePath) {
-    const prompt = ANALYSIS_PROMPT.replace('{content}', content);
-
-    const response = await this.openAIClient.getCompletion(prompt, {
-      temperature: 0.5,
-      max_tokens: 1000
-    });
+    const initializedPrompt = this.prompt.replace('{content}', content);
+    const response = await this.openAIClient.getCompletion(initializedPrompt);
 
     if (response) {
-      await this.saveAnalysis(response, filePath);
+      await this.saveAnalysis(response);
       console.log(`Analysis completed for: ${path.basename(filePath)}`);
     }
   }
@@ -78,7 +74,7 @@ export class MarkdownProcessor {
     return { title: strippedTitle, content: restOfLines };
   }
 
-  async saveAnalysis(analysis, originalFilePath) {
+  async saveAnalysis(analysis) {
     const { title, content } = await this.parseAndRemoveH1Heading(analysis);
     const outputPath = path.join(this.outputDir, title);
 
