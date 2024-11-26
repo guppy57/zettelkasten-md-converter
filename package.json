@@ -1,0 +1,13 @@
+{
+  "name": "zettelkasten-md-converter",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "doppler run -- node index.js"
+  },
+  "dependencies": {
+    "openai": "^4.24.1",
+    "glob": "^10.3.10"
+  }
+}

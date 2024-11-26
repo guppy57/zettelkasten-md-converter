@@ -1,0 +1,4 @@
+outputs/
+inputs/
+node_modules/
+.bin/

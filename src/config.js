@@ -1,0 +1,15 @@
+export const DEFAULT_CONFIG = {
+  model: "gpt-4o",
+  temperature: 0.7,
+  top_p: 1,
+  n: 1,
+  stream: false,
+  max_tokens: 3200,
+  presence_penalty: 0,
+  frequency_penalty: 0,
+  logit_bias: {},
+  user: "default_user",
+  stop: null,
+  response_format: { type: "text" },
+  seed: null,
+};
